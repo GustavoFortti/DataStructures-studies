@@ -34,7 +34,9 @@ int main()
     }
 
     r = remove_final(li);
-
+    r = remove_list_first(li);
+    int ra;
+    r = remove_list(li, ra);
 
     
 
