@@ -25,10 +25,17 @@ int main()
     //size_li = max_size_list(li);
     //size_li = min_size_list(li);
     int i;
+    int r;
     for ( i = 0; i < 4; i++)
     {
-        int x = insert_final(li, data_student[i]);
+        // x = insert_final(li, data_student[i]);
+        // x = insert_first(li, data_student[i]);
+        r = sort_list(li, data_student[i]);
     }
+
+    r = remove_final(li);
+
+
     
 
     free_list(li);
@@ -140,5 +147,63 @@ int sort_list(List *li, struct student st)
     }
     li->data[aux] = st;
     li->qtd;
+    return 1;
+}
+
+int remove_final(List* li)
+{
+    if (li == NULL)
+    {
+        return 0;
+    }
+    if (li->qtd == 0)
+    {
+        return 0;
+    }
+    li->qtd--;
+    return 1;
+}
+
+int remove_list_first(List* li)
+{
+    if ( li == NULL)
+    {
+        return 0;
+    }
+    if ( li->qtd == 0)
+    {
+        return 0;
+    }
+    int i = 0;
+    for ( i = 0; i < li->qtd; i++)
+    {
+        li->data[i] = li->data[i+1];
+    }
+    li->qtd--;
+    return 1;
+}
+
+int remove_list(List* li, int mat)
+{
+    if (li == NULL)
+    {
+        return 0;
+    }
+    if (li->qtd == 0)
+    {
+        return 0;
+    }
+    int aux, i;
+    for ( i = 0; i < li->qtd && li->data[i].RA != mat; i++);
+    if ( i == li->qtd)
+    {
+        return 0;
+    }
+    aux = i;
+    for ( i = aux; i < li->qtd-1; i++)
+    {
+        li->data[i] = li->data[i+1];
+    }
+    li->qtd--;    
     return 1;
 }
