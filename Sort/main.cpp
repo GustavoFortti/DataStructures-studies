@@ -14,7 +14,7 @@ int main (void)
     // std::cin >> option;       // Entrada para o algoritimo
     
     ListaLinear<int> * LLE = new ListaLinear<int>();                   //declara lista como um objeto de numeros inteiros
-    for (size_t i = 0; i < size; i++)
+    for (int i = 0; i < size; i++)
     {
         LLE->insert_first(*(vector + i));    // insere na lista
     }
