@@ -1,4 +1,4 @@
 Instalar o GCC 
 
-compilar no terminal/cmd
+compilar no shell
 g++ main.cpp Geral.cpp -o main
