@@ -5,35 +5,61 @@
 
 typedef int bool;
 
-typedef struct Tree {
+struct Tree{
     int id;
     struct Tree *left, *right;
-}TR;
+};
 
-TR* createNewNodo(int id)
+typedef struct Tree* tree;
+
+tree createNewNode(int id)
 {
-    TR* newNo = (TR*) malloc(sizeof(TR));
+    tree newNo = (tree) malloc(sizeof(struct Tree));
     newNo->left = NULL;
     newNo->right = NULL;
     newNo->id = id;
-    return newNo;    
+
+    return newNo;
 }
 
-TR* insert(TR* raiz, TR* no)
+tree insert(tree raiz, tree no)
 {
-    if (raiz == NULL) return (no);
+    if (!raiz) return no;
 
-    if (no->id < raiz->id) raiz->left = insert(raiz->left, no);
+    if (raiz->id < no->id) raiz->left = insert(raiz->left, no);
     else raiz->right = insert(raiz->right, no);
 
-    return(raiz);
+    return raiz;
+}
+
+tree search(int id, tree raiz) {
+    if (!raiz) {return NULL;}
+    if (raiz->id == id) {return raiz;}
+    if (raiz->id > id) {search(id, raiz->left);}
+    search(id, raiz->right);
+}
+
+int sizeTree(tree raiz)
+{
+    if (!raiz) return 0;
+    return(sizeTree(raiz->left) + 1 + sizeTree(raiz->right));
+}
+
+void showTree(tree raiz)
+{
+    if (raiz)
+    {
+        printf("%i", raiz->id);
+        printf("(");
+        showTree(raiz->left);
+        showTree(raiz->right);
+        printf(")");
+    }
 }
 
 int main()
 {
-    TR* T = NULL; 
+    tree T = NULL;
 
-    TR* no = createNewNodo(20);
-    T = insert(T, no);
-
+    return 0;
 }
